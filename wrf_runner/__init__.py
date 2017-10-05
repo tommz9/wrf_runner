@@ -5,3 +5,7 @@
 __author__ = """Tomas Barton"""
 __email__ = 'tomas@tomasbarton.net'
 __version__ = '0.1.0'
+
+
+
+from .wrf_exceptions import WrfException

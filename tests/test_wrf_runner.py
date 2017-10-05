@@ -5,21 +5,12 @@
 
 import pytest
 
-
 from wrf_runner import wrf_runner
+from wrf_runner import WrfException
 
+class TestConfiguration:
 
-@pytest.fixture
-def response():
-    """Sample pytest fixture.
-
-    See more at: http://doc.pytest.org/en/latest/fixture.html
-    """
-    # import requests
-    # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
-
-
-def test_content(response):
-    """Sample pytest test function with the pytest fixture as an argument."""
-    # from bs4 import BeautifulSoup
-    # assert 'GitHub' in BeautifulSoup(response.content).title.string
+    @pytest.mark.parametrize("config", [{}, 5, 'nonsense'])
+    def test_basic_wrong(self, config):
+        with pytest.raises(WrfException):
+            wrf_runner.check_configuration(config)
