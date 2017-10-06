@@ -34,7 +34,9 @@ valid_config_1 = {
 def test_valid_configuration(config):
     geogrid.check_config(config)
 
-invalid_configs = [{
+
+invalid_configs = [
+    {
         "domains": [{
             "id": 1,
             "parent_ratio": 1,
@@ -72,7 +74,7 @@ invalid_configs = [{
     {
         "domains": [{
             "id": 1,
-             "parent_id": 1,
+            "parent_id": 1,
             "parent_ratio": 1,
             "parent_start": [1],  # Only one
             "size": [74, 61]
@@ -87,6 +89,7 @@ invalid_configs = [{
         "data_path": "/datasets/GEOGDATA"
     }
 ]
+
 
 @pytest.mark.parametrize("config", invalid_configs)
 def test_basic_invalid_configuration(config):
