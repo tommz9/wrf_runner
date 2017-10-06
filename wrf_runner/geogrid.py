@@ -76,9 +76,12 @@ def check_config(config):
 
 
 class Geogrid:
-    def __init__(self):
+    def __init__(self, config=None):
         """"""
-        self.config = None
+        try:
+            self.config = config['geogrid']
+        except KeyError:
+            self.config = config
 
     def set_config(self, config):
         check_config(config)
@@ -91,4 +94,4 @@ class Geogrid:
         with the configuration for the other programs
         """
 
-        return namelist_geogrid(self.config)
+        return namelist_geogrid.config_to_namelist(self.config)

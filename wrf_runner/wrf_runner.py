@@ -19,6 +19,7 @@ configuration_schema = {
     "required": ["geogrib", "ungrib", "metgrib", "real", "wrf"]
 }
 
+
 def check_configuration(config):
     try:
         jsonschema.validate(config, configuration_schema)
