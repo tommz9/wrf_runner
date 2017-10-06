@@ -1,0 +1,32 @@
+{
+    "geogrid": {
+        "domains": [
+            {
+                "parent_id": 1,
+                "parent_ratio": 1,
+                "parent_start": [1, 1],
+                "size": [100, 100],
+                "step_size": [9000, 9000]
+            },
+            {
+                "parent_id": 1,
+                "parent_ratio": 3,
+                "parent_start": [100, 100],
+                "size": [74, 61]
+            },
+            {
+                "parent_id": 2,
+                "parent_ratio": 3,
+                "parent_start": [33, 33],
+                "size": [100, 100]
+            }
+        ],
+        "projection": {
+            "type": "lambert",
+            "ref_location": [49.571239, -113.818533],
+            "truelat": [47.571239, 51.571239],
+            "stand_lot": -113.818533
+        },
+        "data_path": "/WPS_GEOG"
+    }
+}
