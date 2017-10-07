@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-
 from wrf_runner import geogrid, WrfException
-from wrf_runner.namelist import generate_config_file
 from wrf_runner.namelist_geogrid import geogrid_namelist, list_from_list_of_dict, \
     config_to_namelist
+
+from wrf_runner.namelist import generate_config_file
 
 
 @pytest.mark.parametrize("config", [{}, 5, 'nonsense'])

@@ -1,6 +1,6 @@
-import pytest
-
 from collections import OrderedDict
+
+import pytest
 
 from wrf_runner.namelist import line_template, section_template, file_template, generate_config_file
 

@@ -4,9 +4,10 @@
 """Tests for `wrf_runner` package."""
 
 import pytest
+from wrf_runner import WrfException
 
 from wrf_runner import wrf_runner
-from wrf_runner import WrfException
+
 
 class TestConfiguration:
 
