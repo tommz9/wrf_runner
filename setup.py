@@ -14,7 +14,8 @@ with open('HISTORY.rst') as history_file:
 requirements = [
     'Jinja2',
     'jsonschema',
-    'click'
+    'click',
+    'progressbar2'
     # TODO: put package requirements here
 ]
 
