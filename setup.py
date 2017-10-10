@@ -15,7 +15,8 @@ requirements = [
     'Jinja2',
     'jsonschema',
     'click',
-    'progressbar2'
+    'progressbar2',
+    'dateparser'
     # TODO: put package requirements here
 ]
 

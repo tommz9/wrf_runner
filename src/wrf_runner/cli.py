@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import asyncio
+import collections
 import json
 import sys
 import traceback
@@ -10,6 +11,24 @@ import progressbar
 
 from .geogrid import Geogrid
 from .namelist import generate_config_file
+from .ungrib import Ungrib
+
+
+# From: https://gist.github.com/angstwad/bf22d1822c38a92ec0a9
+def dict_merge(dct, merge_dct):
+    """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of
+    updating only top-level keys, dict_merge recurses down into dicts nested
+    to an arbitrary depth, updating keys. The ``merge_dct`` is merged into
+    ``dct``.
+    :param dct: dict onto which the merge is executed
+    :param merge_dct: dct merged into dct
+    :return: None
+    """
+    for k, v in merge_dct.items():
+        if k in dct and isinstance(dct[k], dict) and isinstance(merge_dct[k], collections.Mapping):
+            dict_merge(dct[k], merge_dct[k])
+        else:
+            dct[k] = merge_dct[k]
 
 
 @click.group()
@@ -34,8 +53,14 @@ def wps_namelist(configuration_file, debug):
             config = json.load(f)
 
         geogrid = Geogrid(config)
+        ungrib = Ungrib(config)
 
-        namelist = geogrid.generate_namelist_dict()
+        namelist = {}
+        namelist_geogrid = geogrid.generate_namelist_dict()
+        namelist_ungrib = ungrib.generate_namelist_dict()
+
+        dict_merge(namelist, namelist_geogrid)
+        dict_merge(namelist, namelist_ungrib)
 
         click.echo(generate_config_file(namelist))
     except Exception as e:
