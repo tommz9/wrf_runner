@@ -2,6 +2,8 @@
 
 """Main module."""
 
+from os import getenv
+
 import jsonschema
 
 from . import geogrid
@@ -17,6 +19,10 @@ configuration_schema = {
         "wrf": {"type": "object"}
     },
     "required": ["geogrib", "ungrib", "metgrib", "real", "wrf"]
+}
+
+system_config = {
+    'wps_path': getenv('WPS_PATH', None)
 }
 
 
