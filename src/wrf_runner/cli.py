@@ -54,8 +54,9 @@ def run():
 
 @run.command()
 @click.argument('configuration_file')
+@click.option('--log', default=None, help='Logfile for the output from geogrid')
 @click.option('--progress/--no-progress', default=True, help='Turns on/off the progress bar.')
-def geogrid(configuration_file, progress):
+def geogrid(configuration_file, progress, log):
     with open(configuration_file, 'r') as f:
         config = json.load(f)
 
@@ -78,7 +79,8 @@ def geogrid(configuration_file, progress):
             bar.max_value = out_of
             bar.update(current, force=True)
 
-    geogrid = Geogrid(config, progress_update_cb=update_progress_cb if progress else None, print_message_cb=print)
+    geogrid = Geogrid(config, progress_update_cb=update_progress_cb if progress else None, print_message_cb=print,
+                      log_file=log)
 
     loop = asyncio.get_event_loop()
     success = loop.run_until_complete(geogrid.run())

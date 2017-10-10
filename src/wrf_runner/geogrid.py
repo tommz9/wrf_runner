@@ -5,9 +5,11 @@ Code to represent and manipulate the GEOGRID program.
 """
 
 import asyncio
+import logging
 import os
 import re
 from enum import Enum
+from typing import Callable
 
 import jsonschema
 
@@ -83,6 +85,9 @@ def check_config(config):
 
 
 class RunState(Enum):
+    """
+    States to track the progression of the GEOGRID program
+    """
     Idle = 1
     Initialization = 2
     DomainProcessing = 3
@@ -104,8 +109,22 @@ def check_progress_update(line: str):
 
 
 class Geogrid:
-    def __init__(self, config=None, environment_config=None, progress_update_cb=None, print_message_cb=None):
-        """"""
+    def __init__(self,
+                 config=None,
+                 environment_config=None,
+                 progress_update_cb: Callable[[int, int], None] = None,
+                 print_message_cb: Callable[[str], None] = None,
+                 log_file=None):
+        """
+
+        :param config:
+        :param environment_config:
+        :param progress_update_cb: This callback will be called every time GEOGRID starts processing a new domain and
+        also at the end when all domains are done. First argument is the number of finished domains and the last one is
+        the total domains count.
+        :param print_message_cb: Callback used to print progress messages.
+        :param log_file: The stdout and stderr will be saved to this file
+        """
         try:
             self.config = config['geogrid']
         except KeyError:
@@ -125,6 +144,9 @@ class Geogrid:
         self.progress_update_cb = progress_update_cb
         self.print_message_cb = print_message_cb
 
+        self.log_file = log_file
+        self.logger = None
+
     def set_config(self, config):
         check_config(config)
         self.config = config
@@ -139,11 +161,14 @@ class Geogrid:
         return namelist_geogrid.config_to_namelist(self.config)
 
     def stderr_callback(self, line: str):
-        line.strip()
+        line = line.strip()
         self.stderr.append(line)
         if 'ERROR' in line:
             self.error_run = True
             # print('Geogrid stderr:', line)
+
+        if self.logger:
+            self.logger.error(line)
 
     def update_progress(self):
         if self.run_state is RunState.DomainProcessing:
@@ -183,6 +208,20 @@ class Geogrid:
                 self.run_state = RunState.Done
                 self.update_progress()
 
+        if self.logger:
+            self.logger.info(line)
+
+    def initialize_logger(self):
+        if self.log_file:
+            self.logger = logging.Logger('GEOGRID')
+
+            file_handler = logging.FileHandler(self.log_file)
+
+            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+            file_handler.setFormatter(formatter)
+
+            self.logger.addHandler(file_handler)
+
     async def run(self):
         # cd to the WPS folder
         os.chdir(self.environment_config['wps_path'])
@@ -205,8 +244,9 @@ class Geogrid:
                     return
 
         self.run_state = RunState.Initialization
-
+        self.initialize_logger()
         self.print_message('Initializing...')
+
         # Run the program
         process = await asyncio.create_subprocess_exec('./geogrid.exe', stdout=asyncio.subprocess.PIPE,
                                                        stderr=asyncio.subprocess.PIPE)
