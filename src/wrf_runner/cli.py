@@ -120,3 +120,23 @@ def geogrid(configuration_file, progress, log):
     else:
         print('Failure.')
         sys.exit(1)
+
+
+@run.command()
+@click.argument('configuration_file')
+def ungrib(configuration_file):
+    with open(configuration_file, 'r') as f:
+        config = json.load(f)
+
+    ungrib = Ungrib(config)
+
+    loop = asyncio.get_event_loop()
+    success = loop.run_until_complete(ungrib.run())
+    loop.close()
+
+    if success:
+        print('Success.')
+        sys.exit(0)
+    else:
+        print('Failure.')
+        sys.exit(1)
