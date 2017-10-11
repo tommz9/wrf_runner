@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pytest
+import asyncio
 from wrf_runner import geogrid, WrfException
 from wrf_runner.namelist_geogrid import geogrid_namelist, list_from_list_of_dict, \
     config_to_namelist
@@ -121,7 +122,8 @@ invalid_configs = [
                 "parent_ratio": 1,
                 "parent_start": [1, 1],
                 "size": [74, 61],
-                "step_size": [9000, 9000]  # Step size specified on the second domain
+                # Step size specified on the second domain
+                "step_size": [9000, 9000]
             }
         ],
 
@@ -265,8 +267,10 @@ def test_list_from_list_of_dict():
     }]
 
     assert (list_from_list_of_dict(test_list, 'parent_ratio') == [1, 3])
-    assert (list_from_list_of_dict(test_list, 'size', selector=lambda x: x[0]) == [74, 100])
-    assert (list_from_list_of_dict(test_list, 'size', selector=lambda x: x[1]) == [61, 200])
+    assert (list_from_list_of_dict(test_list, 'size',
+                                   selector=lambda x: x[0]) == [74, 100])
+    assert (list_from_list_of_dict(test_list, 'size',
+                                   selector=lambda x: x[1]) == [61, 200])
 
 
 valid_config_3_domains = {
@@ -309,3 +313,85 @@ def test_config_to_namelist_basic():
 
     # Should be accepted by the file generator without any exception
     generate_config_file(namelist)
+
+
+class TestRunMethods:
+
+    @pytest.fixture(autouse=True)
+    def mock_system_config(self, mocker):
+        self.test_working_directory = "/tmp"
+        mock_system_config = {
+            'wps_path': self.test_working_directory
+        }
+
+        mocker.patch('wrf_runner.geogrid.system_config', mock_system_config)
+
+    @pytest.mark.asyncio
+    async def test_run_changes_cwd(self, mocker):
+
+        mocked_chdir = mocker.patch('os.chdir')
+
+        geo = geogrid.Geogrid(config=valid_config_3_domains)
+
+        try:
+            result = await geo.run()
+        except FileNotFoundError:  # We probably don't have the executable
+            pass
+
+        mocked_chdir.assert_called_with(self.test_working_directory)
+
+    # the param is a list of tuples (Expected result, list of stdout lines)
+    @pytest.fixture(params=[
+        (False, ['', 'some ERROR happened', '']),
+        (False, ['Messages', 'something happened',
+                 'Processing domain 1 of 3', 'there is not final message']),
+        (True, ['Messages', 'something happened', 'Processing domain 1 of 3', 'Something else', '*   Successful completion of geogrid.   *'])])
+    def process_simulator(self, request, mocker):
+        async def fake_create_subprocess(*args, **kwargs):
+            return FakeProcess(request.param[1], [], 0)
+
+        mocker.patch(
+            'wrf_runner.geogrid.asyncio.create_subprocess_exec', fake_create_subprocess)
+
+        return request.param[0]
+
+    @pytest.mark.asyncio
+    async def test_run(self, mocker, process_simulator):
+
+        # The process_simulator fixture creates and mocks the create_subprocess_exec call
+        # It prepares the mock with a fake output and provides the expected_result in the
+        # process_simulator parameter
+
+        # process_simulator is the expected result
+        geo = geogrid.Geogrid(config=valid_config_3_domains)
+        result = await geo.run()
+        assert(result == process_simulator)
+
+
+class FakeStreamReader:
+    def __init__(self, lines):
+        self.lines = lines
+        self.counter = 0
+
+    @asyncio.coroutine
+    async def readline(self):
+        if self.counter < len(self.lines):
+            line = self.lines[self.counter]
+
+            if(len(line) == 0 or line[-1] != '\n'):
+                line += '\n'
+
+            self.counter += 1
+            return line.encode('ASCII')
+        else:
+            return ''.encode('ASCII')
+
+
+class FakeProcess:
+    def __init__(self, stdout_lines, stderr_lines, return_code):
+        self.stdout = FakeStreamReader(stdout_lines)
+        self.stderr = FakeStreamReader(stderr_lines)
+        self.return_code = return_code
+
+    async def wait(self):
+        return self.return_code

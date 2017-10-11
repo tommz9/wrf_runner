@@ -23,11 +23,11 @@ def test_generate_namelist_wps_missing_parameter():
 
 def test_generate_namelist_wps():
     # Get the config file
-    config_fn = os.path.join(resources_directory, 'geogrid_valid_conf.json')
+    config_fn = os.path.join(resources_directory, 'valid_config.json')
 
     runner = CliRunner()
 
     with runner.isolated_filesystem():
         copy(config_fn, '.')
-        result = runner.invoke(cli.wps_namelist, ['geogrid_valid_conf.json'])
+        result = runner.invoke(cli.wps_namelist, ['valid_config.json'])
         assert (result.exit_code == 0)

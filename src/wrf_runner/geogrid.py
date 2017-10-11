@@ -136,7 +136,7 @@ class Geogrid:
         self.stderr = []
         self.stdout = []
 
-        self.error_run = False
+        self.error_run = True
         self.run_state = RunState.Idle
         self.current_domain = 0
         self.domains_count = len(self.config['domains'])
@@ -206,6 +206,7 @@ class Geogrid:
 
             if "Successful completion of geogrid." in line:
                 self.run_state = RunState.Done
+                self.error_run = False
                 self.update_progress()
 
         if self.logger:

@@ -67,7 +67,8 @@ def wps_namelist(configuration_file, debug):
         click.echo(click.style(str(e), bg='red'))
 
         if debug:
-            click.echo(''.join(traceback.format_exception(None, e, e.__traceback__)))
+            click.echo(
+                ''.join(traceback.format_exception(None, e, e.__traceback__)))
 
         sys.exit(1)
 
