@@ -27,6 +27,7 @@ setup_requirements = [
 
 test_requirements = [
     'pytest',
+    'pytest-mock'
     # TODO: put package test requirements here
 ]
 
