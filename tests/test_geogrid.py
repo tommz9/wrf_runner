@@ -351,7 +351,7 @@ class TestRunMethods:
             return FakeProcess(request.param[1], [], 0)
 
         mocker.patch(
-            'wrf_runner.geogrid.asyncio.create_subprocess_exec', fake_create_subprocess)
+            'wrf_runner.program.asyncio.create_subprocess_exec', fake_create_subprocess)
 
         return request.param[0]
 

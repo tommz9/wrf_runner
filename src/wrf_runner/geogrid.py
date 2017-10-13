@@ -4,21 +4,20 @@
 Code to represent and manipulate the GEOGRID program.
 """
 
-import asyncio
-import logging
-import os
 import re
 from enum import Enum
 from typing import Callable
-
 import jsonschema
+import os
 
 from . import namelist_geogrid
 from .namelist import generate_config_file
 from .wrf_exceptions import WrfException
 from .wrf_runner import system_config
+from .program import Program
 
-two_numbers = {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+two_numbers = {"type": "array", "items": {
+    "type": "number"}, "minItems": 2, "maxItems": 2}
 
 configuration_schema = {
     "type": "object",
@@ -67,7 +66,8 @@ def check_config(config):
             raise WrfException("Step size not specified in the first domain")
 
         if any(['step_size' in domain for domain in config['domains'][1:]]):
-            raise WrfException("Step size can be specified only on the first domain")
+            raise WrfException(
+                "Step size can be specified only on the first domain")
 
         # Check first domain id
         if config['domains'][0]['parent_id'] != 1:
@@ -78,7 +78,8 @@ def check_config(config):
             if domain['parent_id'] > i:
                 raise WrfException('Invalid parent_id (too large)')
             if domain['parent_id'] < 1:
-                raise WrfException('Invalid parent_id. Has to be bigger than 1.')
+                raise WrfException(
+                    'Invalid parent_id. Has to be bigger than 1.')
 
     except jsonschema.ValidationError as e:
         raise WrfException("Configuration error", e)
@@ -108,33 +109,30 @@ def check_progress_update(line: str):
     return None
 
 
-class Geogrid:
+class Geogrid():
     def __init__(self,
                  config=None,
-                 environment_config=None,
                  progress_update_cb: Callable[[int, int], None] = None,
                  print_message_cb: Callable[[str], None] = None,
                  log_file=None):
         """
 
-        :param config:
-        :param environment_config:
-        :param progress_update_cb: This callback will be called every time GEOGRID starts processing a new domain and
-        also at the end when all domains are done. First argument is the number of finished domains and the last one is
-        the total domains count.
-        :param print_message_cb: Callback used to print progress messages.
-        :param log_file: The stdout and stderr will be saved to this file
+        :param config: a dict with the configuration
+        :param progress_update_cb: Callback that will get called everytime a domain processing
+        is finished.
+        :param print_message_cb: will be called for printing messages
         """
+
+        self.program = Program(
+            './geogrid.exe',
+            self.stdout_callback,
+            self.stderr_callback,
+            log_file=log_file)
+
         try:
             self.config = config['geogrid']
         except KeyError:
             self.config = config
-
-        if environment_config is None:
-            self.environment_config = system_config
-
-        self.stderr = []
-        self.stdout = []
 
         self.error_run = True
         self.run_state = RunState.Idle
@@ -143,9 +141,6 @@ class Geogrid:
 
         self.progress_update_cb = progress_update_cb
         self.print_message_cb = print_message_cb
-
-        self.log_file = log_file
-        self.logger = None
 
     def set_config(self, config):
         check_config(config)
@@ -161,19 +156,14 @@ class Geogrid:
         return namelist_geogrid.config_to_namelist(self.config)
 
     def stderr_callback(self, line: str):
-        line = line.strip()
-        self.stderr.append(line)
         if 'ERROR' in line:
             self.error_run = True
-            # print('Geogrid stderr:', line)
-
-        if self.logger:
-            self.logger.error(line)
 
     def update_progress(self):
         if self.run_state is RunState.DomainProcessing:
             if self.progress_update_cb:
-                self.progress_update_cb(self.current_domain - 1, self.domains_count)
+                self.progress_update_cb(
+                    self.current_domain - 1, self.domains_count)
         elif self.run_state is RunState.Done:
             if self.progress_update_cb:
                 self.progress_update_cb(self.domains_count, self.domains_count)
@@ -183,8 +173,6 @@ class Geogrid:
             self.print_message_cb(message)
 
     def stdout_callback(self, line: str):
-        line = line.strip()
-        self.stdout.append(line)
         if 'ERROR' in line:
             self.error_run = True
 
@@ -209,55 +197,23 @@ class Geogrid:
                 self.error_run = False
                 self.update_progress()
 
-        if self.logger:
-            self.logger.info(line)
-
-    def initialize_logger(self):
-        if self.log_file:
-            self.logger = logging.Logger('GEOGRID')
-
-            file_handler = logging.FileHandler(self.log_file)
-
-            formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-            file_handler.setFormatter(formatter)
-
-            self.logger.addHandler(file_handler)
-
     async def run(self):
-        # cd to the WPS folder
-        os.chdir(self.environment_config['wps_path'])
+
+        os.chdir(system_config['wps_path'])
 
         self.print_message('Processing the configuration file...')
 
         # Generate the config file and save it
-        config_file_content = generate_config_file(self.generate_namelist_dict())
+        config_file_content = generate_config_file(
+            self.generate_namelist_dict())
 
         # Generate the namelist
-        with open('namelist.wps', 'w') as f:
-            f.write(config_file_content)
-
-        async def stream_reader(stream, cb):
-            while True:
-                line = await stream.readline()
-                if len(line):
-                    cb(line.decode('ASCII'))
-                else:
-                    return
+        with open('namelist.wps', 'w') as namelist_file:
+            namelist_file.write(config_file_content)
 
         self.run_state = RunState.Initialization
-        self.initialize_logger()
         self.print_message('Initializing...')
 
-        # Run the program
-        process = await asyncio.create_subprocess_exec('./geogrid.exe', stdout=asyncio.subprocess.PIPE,
-                                                       stderr=asyncio.subprocess.PIPE)
+        return_code = await self.program.run()
 
-        # Setup the line callbacks
-        await stream_reader(process.stdout, self.stdout_callback)
-        await stream_reader(process.stderr, self.stderr_callback)
-
-        # Wait for the program to end
-        return_code = await process.wait()
-
-        # Evaluate the result
-        return not (return_code != 0 or self.error_run)
+        return (self.error_run is not True) and return_code == 0
