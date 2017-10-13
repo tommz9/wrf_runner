@@ -27,7 +27,8 @@ setup_requirements = [
 
 test_requirements = [
     'pytest',
-    'pytest-mock'
+    'pytest-mock',
+    'pytest-asyncio'
     # TODO: put package test requirements here
 ]
 
