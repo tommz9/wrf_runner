@@ -1,0 +1,1305 @@
+ *** Starting program ungrib.exe ***
+Start_date =  2017-08-26_12:00:00 ,      End_date = 2017-08-27_00:00:00
+output format is WPS
+Path to intermediate files is ./
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 00:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 01:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 02:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 03:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 06:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 06:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 07:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 08:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 09:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 12:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 12:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 13:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 14:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 15:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 18:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 18:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 19:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 20:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-26 21:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-27 00:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+Subsoil level      3 in the GRIB2 file, was not found in the Vtable
+
+###############################################################################
+
+Inventory for date = 2017-08-27 00:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+
+###############################################################################
+
+Inventory for date = 2017-08-26 12:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+
+###############################################################################
+
+Inventory for date = 2017-08-26 18:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X        X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+
+###############################################################################
+
+Inventory for date = 2017-08-27 00:00:00
+
+PRES   TT       UU       VV       RH       HGT      PSFC     PMSL     SM000010 SM010040 SM040100 SM100200 ST000010 ST010040 ST040100 ST100200 SEAICE   LANDSEA  SOILHGT  SKINTEMP SNOW     SNOWH    CANWAT
+-------------------------------------------------------------------------------
+2013.0  O        O        O        O        O        O        X        O        O        O        O        O        O        O        O        O        O        O        O        O        O        O
+2001.0  X        X        X        X        O        X        O        X        X        X        X        X        X        X        X        X        X        X        X        X        X        X
+1000.0  X        X        X        X        X
+ 975.0  X        X        X        X        X
+ 950.0  X        X        X        X        X
+ 925.0  X        X        X        X        X
+ 900.0  X        X        X        X        X
+ 875.0  X        X        X        X        X
+ 850.0  X        X        X        X        X
+ 825.0  X        X        X        X        X
+ 800.0  X        X        X      Subroutine DATINT: Interpolating 3-d files to fill in any missing data...
+Looking for data at time 2017-08-26_12
+Found file:      MET:2017-08-26_12
+Looking for data at time 2017-08-26_18
+Found file:      MET:2017-08-26_18
+Looking for data at time 2017-08-27_00
+Found file:      MET:2017-08-27_00
+End Subroutine DATINT.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!  Successful completion of ungrib.   !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ Name of source model =>NCEP MESO NAM Model     GRID 218
+ Name of source model =>NCEP MESO NAM Model     GRID 218
+ Name of source model =>NCEP MESO NAM Model     GRID 218
+  X        X
+ 775.0  X        X        X        X        X
+ 750.0  X        X        X        X        X
+ 725.0  X        X        X        X        X
+ 700.0  X        X        X        X        X
+ 675.0  X        X        X        X        X
+ 650.0  X        X        X        X        X
+ 625.0  X        X        X        X        X
+ 600.0  X        X        X        X        X
+ 575.0  X        X        X        X        X
+ 550.0  X        X        X        X        X
+ 525.0  X        X        X        X        X
+ 500.0  X        X        X        X        X
+ 475.0  X        X        X        X        X
+ 450.0  X        X        X        X        X
+ 425.0  X        X        X        X        X
+ 400.0  X        X        X        X        X
+ 375.0  X        X        X        X        X
+ 350.0  X        X        X        X        X
+ 325.0  X        X        X        X        X
+ 300.0  X        X        X        X        X
+ 275.0  X        X        X        X        X
+ 250.0  X        X        X        X        X
+ 225.0  X        X        X        X        X
+ 200.0  X        X        X        X        X
+ 175.0  X        X        X        X        X
+ 150.0  X        X        X        X        X
+ 125.0  X        X        X        X        X
+ 100.0  X        X        X        X        X
+  75.0  X        X        X        X        X
+  50.0  X        X        X        X        X
+-------------------------------------------------------------------------------
+
+**********
+Deleting temporary files created by ungrib...
+**********
+
+Deleting file:  ./PFILE:2017-08-26_00
+Deleting file:  ./PFILE:2017-08-26_01
+Deleting file:  ./PFILE:2017-08-26_02
+Deleting file:  ./PFILE:2017-08-26_03
+Deleting file:  ./PFILE:2017-08-26_06
+Deleting file:  ./PFILE:2017-08-26_07
+Deleting file:  ./PFILE:2017-08-26_08
+Deleting file:  ./PFILE:2017-08-26_09
+Deleting file:  ./PFILE:2017-08-26_12
+Deleting file:  ./PFILE:2017-08-26_13
+Deleting file:  ./PFILE:2017-08-26_14
+Deleting file:  ./PFILE:2017-08-26_15
+Deleting file:  ./PFILE:2017-08-26_18
+Deleting file:  ./PFILE:2017-08-26_19
+Deleting file:  ./PFILE:2017-08-26_20
+Deleting file:  ./PFILE:2017-08-26_21
+Deleting file:  ./PFILE:2017-08-27_00
+
+**********
+Done deleting temporary files.
+**********
+

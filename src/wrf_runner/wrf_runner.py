@@ -6,7 +6,7 @@ from os import getenv
 
 import jsonschema
 
-from . import geogrid
+
 from .wrf_exceptions import WrfException
 
 configuration_schema = {
@@ -25,6 +25,7 @@ system_config = {
     'wps_path': getenv('WPS_PATH', None)
 }
 
+from . import geogrid
 
 def check_configuration(config):
     try:
