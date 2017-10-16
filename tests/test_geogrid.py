@@ -2,11 +2,13 @@
 
 import pytest
 import asyncio
+import os
 from wrf_runner import geogrid, WrfException
 from wrf_runner.namelist_geogrid import geogrid_namelist, list_from_list_of_dict, \
     config_to_namelist
 
 from wrf_runner.namelist import generate_config_file
+from .test_cli import resources_directory
 
 
 @pytest.mark.parametrize("config", [{}, 5, 'nonsense'])
@@ -315,6 +317,10 @@ def test_config_to_namelist_basic():
     generate_config_file(namelist)
 
 
+success_stdout_from_file = open(os.path.join(
+    resources_directory, 'geogrid.success.stdout.txt'), 'r').readlines()
+
+
 class TestRunMethods:
 
     @pytest.fixture(autouse=True)
@@ -345,7 +351,9 @@ class TestRunMethods:
         (False, ['', 'some ERROR happened', '']),
         (False, ['Messages', 'something happened',
                  'Processing domain 1 of 3', 'there is not final message']),
-        (True, ['Messages', 'something happened', 'Processing domain 1 of 3', 'Something else', '*   Successful completion of geogrid.   *'])])
+        (True, ['Messages', 'something happened', 'Processing domain 1 of 3',
+                'Something else', '*   Successful completion of geogrid.   *']),
+        (True, success_stdout_from_file)])
     def process_simulator(self, request, mocker):
         async def fake_create_subprocess(*args, **kwargs):
             return FakeProcess(request.param[1], [], 0)
