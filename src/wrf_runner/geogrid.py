@@ -9,6 +9,7 @@ from enum import Enum
 from typing import Callable
 import jsonschema
 import os
+from transitions import Machine
 
 from . import namelist_geogrid
 from .namelist import generate_config_file
@@ -85,16 +86,6 @@ def check_config(config):
         raise WrfException("Configuration error", e)
 
 
-class RunState(Enum):
-    """
-    States to track the progression of the GEOGRID program
-    """
-    Idle = 1
-    Initialization = 2
-    DomainProcessing = 3
-    Done = 4
-
-
 def check_progress_update(line: str):
     """
     Scans one line of the output of GEOGRID to check if the program started working on a new domain.
@@ -107,6 +98,95 @@ def check_progress_update(line: str):
         return int(result.group(1)), int(result.group(2))
 
     return None
+
+
+class GeogridStateMachine(Machine):
+    """
+    This state machine monitors the output from GEOGRID. It can count the processed domains, catch errors
+    and success.
+    """
+
+    initial = 'initialization'
+
+    states = ['initialization', 'domain_processing', 'done', 'error']
+
+    transitions = [
+        {
+            'trigger':      'process_line',
+            'source':       '*',
+            'dest':         'error',
+            'conditions':   'is_error_line'
+        },
+        {
+            'trigger':      'process_line',
+            'source':       'initialization',
+            'dest':         'domain_processing',
+            'conditions':   'is_domain_processing_line',
+            'after':        'update_current_domain'
+        },
+        {
+            'trigger':      'process_line',
+            'source':       'initialization',
+            'dest':         'initialization'
+        },
+        {
+            'trigger':      'process_line',
+            'source':       'domain_processing',
+            'dest':         'domain_processing',
+            'conditions':   'is_domain_processing_line',
+            'after':        'update_current_domain'
+        },
+        {
+            'trigger':      'process_line',
+            'source':       'domain_processing',
+            'dest':         'done',
+            'conditions':   'is_finished_line',
+            'after':        'finish_current_domain'
+        },
+        {
+            'trigger':      'process_line',
+            'source':       'domain_processing',
+            'dest':         'domain_processing'
+        },
+        {
+            'trigger':      'process_line',
+            'source':       'done',
+            'dest':         'done'
+        }
+    ]
+
+    def __init__(self, max_domains, progress_cb = None):
+        Machine.__init__(self, states=GeogridStateMachine.states, initial=GeogridStateMachine.initial,
+                         transitions=GeogridStateMachine.transitions)
+
+        self.progress_cb = progress_cb
+        self.max_domains = max_domains
+        self.reset()
+
+    def is_domain_processing_line(self, line):
+        return check_progress_update(line) is not None
+
+    def is_finished_line(self, line):
+        return "Successful completion of geogrid." in line
+
+    def is_error_line(self, line):
+        return 'ERROR' in line
+
+    def update_current_domain(self, line):
+        self.current_domain, self.max_domains = check_progress_update(line)
+        self.call_progress_callback()
+
+    def finish_current_domain(self, line):
+        self.current_domain = self.max_domains
+        self.call_progress_callback()
+
+    def reset(self):
+        self.current_domain = 0
+        self.to_initialization()
+
+    def call_progress_callback(self):
+        if self.progress_cb:
+            self.progress_cb(self.current_domain, self.max_domains)
 
 
 class Geogrid():
@@ -123,28 +203,21 @@ class Geogrid():
         :param print_message_cb: will be called for printing messages
         """
 
-        self.program = Program(
-            './geogrid.exe',
-            self.stdout_callback,
-            self.stderr_callback,
-            log_file=log_file)
-
         try:
             self.config = config['geogrid']
         except KeyError:
             self.config = config
 
-        self.error_run = True
-        self.run_state = RunState.Idle
-        self.current_domain = 0
-        self.domains_count = len(self.config['domains'])
+        domains_count = len(self.config['domains'])
+        self.state_machine = GeogridStateMachine(domains_count, progress_update_cb)
 
-        self.progress_update_cb = progress_update_cb
+        self.program = Program(
+            './geogrid.exe',
+            self.state_machine.process_line,
+            self.state_machine.process_line,
+            log_file=log_file)
+
         self.print_message_cb = print_message_cb
-
-    def set_config(self, config):
-        check_config(config)
-        self.config = config
 
     def generate_namelist_dict(self):
         """
@@ -155,47 +228,9 @@ class Geogrid():
 
         return namelist_geogrid.config_to_namelist(self.config)
 
-    def stderr_callback(self, line: str):
-        if 'ERROR' in line:
-            self.error_run = True
-
-    def update_progress(self):
-        if self.run_state is RunState.DomainProcessing:
-            if self.progress_update_cb:
-                self.progress_update_cb(
-                    self.current_domain - 1, self.domains_count)
-        elif self.run_state is RunState.Done:
-            if self.progress_update_cb:
-                self.progress_update_cb(self.domains_count, self.domains_count)
-
     def print_message(self, message):
         if self.print_message_cb:
             self.print_message_cb(message)
-
-    def stdout_callback(self, line: str):
-        if 'ERROR' in line:
-            self.error_run = True
-
-        if self.run_state is RunState.Initialization:
-            progress_update = check_progress_update(line)
-            if progress_update:
-                assert (self.domains_count == progress_update[1])
-                self.current_domain, self.domains_count = progress_update
-                self.run_state = RunState.DomainProcessing
-                self.print_message('Processing domains...')
-                self.update_progress()
-
-        elif self.run_state is RunState.DomainProcessing:
-            progress_update = check_progress_update(line)
-            if progress_update:
-                assert (self.domains_count == progress_update[1])
-                self.current_domain, self.domains_count = progress_update
-                self.update_progress()
-
-            if "Successful completion of geogrid." in line:
-                self.run_state = RunState.Done
-                self.error_run = False
-                self.update_progress()
 
     async def run(self):
 
@@ -211,9 +246,9 @@ class Geogrid():
         with open('namelist.wps', 'w') as namelist_file:
             namelist_file.write(config_file_content)
 
-        self.run_state = RunState.Initialization
+        self.state_machine.reset()
         self.print_message('Initializing...')
 
         return_code = await self.program.run()
 
-        return (self.error_run is not True) and return_code == 0
+        return self.state_machine.state == 'done' and return_code == 0

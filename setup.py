@@ -16,7 +16,8 @@ requirements = [
     'jsonschema',
     'click',
     'progressbar2',
-    'dateparser'
+    'dateparser',
+    'transitions'
     # TODO: put package requirements here
 ]
 

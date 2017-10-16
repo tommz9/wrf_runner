@@ -72,6 +72,7 @@ class Program:
 
             return file_handler
 
+        # Just a dymmy object with a close method
         return SimpleNamespace(close=lambda: None)
 
     async def run(self):
