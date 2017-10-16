@@ -16,6 +16,7 @@ from .namelist import generate_config_file
 from .wrf_exceptions import WrfException
 from .wrf_runner import system_config
 from .program import Program
+from .wps_state_machine import WpsStateMachine
 
 two_numbers = {"type": "array", "items": {
     "type": "number"}, "minItems": 2, "maxItems": 2}
@@ -99,96 +100,6 @@ def check_progress_update(line: str):
 
     return None
 
-
-class GeogridStateMachine(Machine):
-    """
-    This state machine monitors the output from GEOGRID. It can count the processed domains, catch errors
-    and success.
-    """
-
-    initial = 'initialization'
-
-    states = ['initialization', 'domain_processing', 'done', 'error']
-
-    transitions = [
-        {
-            'trigger':      'process_line',
-            'source':       '*',
-            'dest':         'error',
-            'conditions':   'is_error_line'
-        },
-        {
-            'trigger':      'process_line',
-            'source':       'initialization',
-            'dest':         'domain_processing',
-            'conditions':   'is_domain_processing_line',
-            'after':        'update_current_domain'
-        },
-        {
-            'trigger':      'process_line',
-            'source':       'initialization',
-            'dest':         'initialization'
-        },
-        {
-            'trigger':      'process_line',
-            'source':       'domain_processing',
-            'dest':         'domain_processing',
-            'conditions':   'is_domain_processing_line',
-            'after':        'update_current_domain'
-        },
-        {
-            'trigger':      'process_line',
-            'source':       'domain_processing',
-            'dest':         'done',
-            'conditions':   'is_finished_line',
-            'after':        'finish_current_domain'
-        },
-        {
-            'trigger':      'process_line',
-            'source':       'domain_processing',
-            'dest':         'domain_processing'
-        },
-        {
-            'trigger':      'process_line',
-            'source':       'done',
-            'dest':         'done'
-        }
-    ]
-
-    def __init__(self, max_domains, progress_cb = None):
-        Machine.__init__(self, states=GeogridStateMachine.states, initial=GeogridStateMachine.initial,
-                         transitions=GeogridStateMachine.transitions)
-
-        self.progress_cb = progress_cb
-        self.max_domains = max_domains
-        self.reset()
-
-    def is_domain_processing_line(self, line):
-        return check_progress_update(line) is not None
-
-    def is_finished_line(self, line):
-        return "Successful completion of geogrid." in line
-
-    def is_error_line(self, line):
-        return 'ERROR' in line
-
-    def update_current_domain(self, line):
-        self.current_domain, self.max_domains = check_progress_update(line)
-        self.call_progress_callback()
-
-    def finish_current_domain(self, line):
-        self.current_domain = self.max_domains
-        self.call_progress_callback()
-
-    def reset(self):
-        self.current_domain = 0
-        self.to_initialization()
-
-    def call_progress_callback(self):
-        if self.progress_cb:
-            self.progress_cb(self.current_domain, self.max_domains)
-
-
 class Geogrid():
     def __init__(self,
                  config=None,
@@ -209,7 +120,12 @@ class Geogrid():
             self.config = config
 
         domains_count = len(self.config['domains'])
-        self.state_machine = GeogridStateMachine(domains_count, progress_update_cb)
+        self.state_machine = WpsStateMachine(
+            domains_count, 
+            check_progress_update,
+            lambda line: 'Successful completion of geogrid.' in line,
+            lambda line: 'ERROR' in line,
+            progress_update_cb)
 
         self.program = Program(
             './geogrid.exe',
