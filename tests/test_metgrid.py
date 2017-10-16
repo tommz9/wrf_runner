@@ -50,5 +50,4 @@ class TestRunMethods:
         # Success
         assert(result == True)
 
-        # The progress has been updated 25 times
-        # assert(progress_update_mock.call_count == 25)
+        assert(progress_update_mock.call_count == 4)
