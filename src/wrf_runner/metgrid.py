@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 from typing import Callable
 
@@ -6,21 +8,22 @@ from .namelist import generate_config_file
 from .wps_state_machine import WpsStateMachine
 from . import geogrid
 from .program import Program
-from . import namelist_metgrid
+from .configuration import WpsConfiguration
+
 
 class Metgrid:
     def __init__(self,
-                config,
-                progress_update_cb: Callable[[int, int], None] = None,
-                print_message_cb: Callable[[str], None] = None,
-                log_file=None):
-        
-        try:
-            self.config = config['metgrid']
-        except KeyError:
-            self.config = config
+                 config,
+                 progress_update_cb: Callable[[int, int], None] = None,
+                 print_message_cb: Callable[[str], None] = None,
+                 log_file=None):
 
-        domain_count = 3 # TODO
+        if isinstance(config, WpsConfiguration):
+            self.config = config
+        else:
+            self.config = WpsConfiguration(config)
+
+        domain_count = 3  # TODO
 
         self.state_machine = WpsStateMachine(
             domain_count,
@@ -39,9 +42,6 @@ class Metgrid:
 
         self.print_message_cb = print_message_cb
 
-    def generate_namelist_dict(self):
-        return namelist_metgrid.config_to_namelist(self.config)
-
     def print_message(self, message):
         if self.print_message_cb:
             self.print_message_cb(message)
@@ -53,8 +53,7 @@ class Metgrid:
         self.print_message('Processing the configuration file...')
 
         # Generate the config file and save it
-        config_file_content = generate_config_file(
-            self.generate_namelist_dict())
+        config_file_content = self.config.get_namelist()
 
         # Generate the namelist
         with open('namelist.wps', 'w') as namelist_file:

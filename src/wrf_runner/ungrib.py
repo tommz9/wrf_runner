@@ -9,49 +9,20 @@ from typing import Callable
 import dateparser
 import jsonschema
 
-from . import namelist_ungrib
 from .namelist import generate_config_file
 from .wrf_exceptions import WrfException
 from .wrf_runner import system_config
 from .program import Program
 from .wps_state_machine import WpsStateMachine
-
-configuration_schema = {
-    "type": "object",
-    "properties": {
-        "start_date": {"type": "string"},
-        "end_date": {"type": "string"},
-        "interval": {"type": "number"},
-        "prefix": {"type": "string"}
-    },
-
-    "required": ["start_date", "end_date", "interval", "prefix"]
-}
-
-
-def check_config(config):
-    try:
-        jsonschema.validate(config, configuration_schema)
-
-        # Check if we understand the dates
-        config['start_date'] = dateparser.parse(config['start_date'])
-        config['end_date'] = dateparser.parse(config['end_date'])
-
-        if not isinstance(config['start_date'], datetime.datetime):
-            raise WrfException("Cannot parse the start date")
-
-        if not isinstance(config['end_date'], datetime.datetime):
-            raise WrfException("Cannot parse the end date")
-
-    except jsonschema.ValidationError as e:
-        raise WrfException("Configuration error", e)
+from .configuration import WpsConfiguration
 
 
 def check_progress_update(line: str):
     if 'Inventory for date' in line:
         return 1, 10
-    
+
     return None
+
 
 class Ungrib:
     def __init__(self,
@@ -61,19 +32,12 @@ class Ungrib:
                  log_file=None):
         """"""
 
-        try:
-            self.config = config['ungrib']
-        except KeyError:
+        if isinstance(config, WpsConfiguration):
             self.config = config
+        else:
+            self.config = WpsConfiguration(config)
 
-        # Process the datetime
-        if isinstance(self.config['start_date'], str):
-            self.config['start_date'] = dateparser.parse(
-                self.config['start_date'])
-        if isinstance(self.config['end_date'], str):
-            self.config['end_date'] = dateparser.parse(self.config['end_date'])
-
-        files_count = 10 # TODO
+        files_count = 10  # TODO
 
         self.state_machine = WpsStateMachine(
             files_count,
@@ -92,9 +56,6 @@ class Ungrib:
 
         self.print_message_cb = print_message_cb
 
-    def generate_namelist_dict(self):
-        return namelist_ungrib.config_to_namelist(self.config)
-
     def print_message(self, message):
         if self.print_message_cb:
             self.print_message_cb(message)
@@ -106,8 +67,7 @@ class Ungrib:
         self.print_message('Processing the configuration file...')
 
         # Generate the config file and save it
-        config_file_content = generate_config_file(
-            self.generate_namelist_dict())
+        config_file_content = self.config.get_namelist()
 
         # Generate the namelist
         with open('namelist.wps', 'w') as namelist_file:

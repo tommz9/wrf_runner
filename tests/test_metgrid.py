@@ -12,8 +12,6 @@ from .test_geogrid import FakeProcess
 from .test_cli import resources_directory
 
 
-valid_config = {}
-
 class TestRunMethods:
 
     @pytest.fixture(autouse=True)
@@ -39,15 +37,15 @@ class TestRunMethods:
             'wrf_runner.program.asyncio.create_subprocess_exec', fake_create_subprocess)
 
     @pytest.mark.asyncio
-    async def test_success_run(self, valid_process_simulator):
+    async def test_success_run(self, valid_process_simulator, valid_config_1):
 
         progress_update_mock = MagicMock()
 
         ungrib = Metgrid(
-            config=valid_config, progress_update_cb=progress_update_mock)
+            config=valid_config_1, progress_update_cb=progress_update_mock)
         result = await ungrib.run()
 
         # Success
-        assert(result == True)
+        assert(result)
 
         assert(progress_update_mock.call_count == 4)
