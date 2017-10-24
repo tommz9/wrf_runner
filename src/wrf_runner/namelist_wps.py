@@ -10,6 +10,8 @@ and a tuple ( documentation, format_function )
 The format function takes the config dict and formats the appropriate parameters for the namelist.
 """
 
+from itertools import repeat
+
 
 def list_from_list_of_dict(list_of_dict, key, selector=lambda x: x):
     """Take a value from each dict in a list of dictionaries."""
@@ -25,8 +27,8 @@ WPS_NAMELIST_DEFINITIONS = {
                 " variable is an alternate to specifying start_year, start_month, start_day, and "
                 "start_hour, and if both methods are used for specifying the starting time, the "
                 "start_date variable will take precedence. No default value.",
-                lambda config: config['start_date'].strftime(
-                    "%Y-%m-%d_%H:%M:%S")
+                lambda config: list(repeat(config['start_date'].strftime(
+                    "'%Y-%m-%d_%H:%M:%S'"), len(config['domains'])))
             ),
         'end_date':
             (
@@ -35,7 +37,8 @@ WPS_NAMELIST_DEFINITIONS = {
                 "variable is an alternate to specifying end_year, end_month, end_day, and end_hour"
                 " and if both methods are used for specifying the ending time, the end_date "
                 "variable will take precedence. No default value.",
-                lambda config: config['end_date'].strftime("%Y-%m-%d_%H:%M:%S")
+                lambda config: list(repeat(config['end_date'].strftime(
+                    "'%Y-%m-%d_%H:%M:%S'"), len(config['domains'])))
             ),
         'interval_seconds':
             (
