@@ -13,7 +13,7 @@ async def stream_reader(stream, callback):
     while True:
         line = await stream.readline()
         if line:
-            callback(line.decode('ASCII').strip())
+            callback(line.decode('ASCII', 'ignore').strip())
         else:
             return
 

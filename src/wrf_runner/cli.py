@@ -74,11 +74,11 @@ def run():
     pass
 
 
-@run.command()
+@run.command('geogrid')
 @click.argument('configuration_file')
 @click.option('--log', default=None, help='Logfile for the output from geogrid')
 @click.option('--progress/--no-progress', default=True, help='Turns on/off the progress bar.')
-def geogrid(configuration_file, progress, log):
+def cli_geogrid(configuration_file, progress, log):
     with open(configuration_file, 'r') as f:
         config = json.load(f)
 
@@ -123,11 +123,17 @@ def geogrid(configuration_file, progress, log):
 
 @run.command('ungrib')
 @click.argument('configuration_file')
-def cli_ungrib(configuration_file):
+@click.option('--log', default=None, help='Logfile for the output from geogrid')
+def cli_ungrib(configuration_file, log):
     with open(configuration_file, 'r') as f:
         config = json.load(f)
 
-    ungrib_program = ungrib.Ungrib(config)
+    def update_progress_cb(current, out_of):
+        click.echo(f"{current} / {out_of}")
+
+    ungrib_program = ungrib.Ungrib(config,
+                                   progress_update_cb=update_progress_cb,
+                                   log_file=log)
 
     loop = asyncio.get_event_loop()
     success = loop.run_until_complete(ungrib_program.run())
