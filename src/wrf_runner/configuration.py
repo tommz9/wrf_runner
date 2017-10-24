@@ -124,3 +124,6 @@ class WpsConfiguration:
         """Generate the namelist.wps and return it as a string."""
         namelist_dict = namelist_wps.config_to_namelist(self.config_dict)
         return namelist.generate_config_file(namelist_dict)
+
+    def __getitem__(self, key):
+        return self.config_dict[key]

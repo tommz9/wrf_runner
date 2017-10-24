@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+"""
+Code to convert the namelist in a dictionary form into a proper namelist.wps file format.
+"""
 
 from jinja2 import Environment, DictLoader
 

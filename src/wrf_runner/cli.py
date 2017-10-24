@@ -13,8 +13,11 @@ from .geogrid import Geogrid
 from .namelist import generate_config_file
 from .ungrib import Ungrib
 
+from .configuration import WpsConfiguration
 
 # From: https://gist.github.com/angstwad/bf22d1822c38a92ec0a9
+
+
 def dict_merge(dct, merge_dct):
     """ Recursive dict merge. Inspired by :meth:``dict.update()``, instead of
     updating only top-level keys, dict_merge recurses down into dicts nested
@@ -52,17 +55,9 @@ def wps_namelist(configuration_file, debug):
         with open(configuration_file, 'r') as f:
             config = json.load(f)
 
-        geogrid = Geogrid(config)
-        ungrib = Ungrib(config)
+        wps_configuration = WpsConfiguration(config)
 
-        namelist = {}
-        namelist_geogrid = geogrid.generate_namelist_dict()
-        namelist_ungrib = ungrib.generate_namelist_dict()
-
-        dict_merge(namelist, namelist_geogrid)
-        dict_merge(namelist, namelist_ungrib)
-
-        click.echo(generate_config_file(namelist))
+        click.echo(wps_configuration.get_namelist())
     except Exception as e:
         click.echo(click.style(str(e), bg='red'))
 

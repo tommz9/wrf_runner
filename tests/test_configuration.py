@@ -7,6 +7,7 @@ import pytest
 
 from wrf_runner import WrfException
 from wrf_runner.configuration import WpsConfiguration
+from wrf_runner.namelist_wps import list_from_list_of_dict, WPS_NAMELIST_DEFINITIONS
 
 from .test_cli import resources_directory
 
@@ -21,7 +22,7 @@ def test_valid_configuration(valid_config_1):
     WpsConfiguration(valid_config_1)
 
 
-def test_geogrid_namelist_documentation():
+def test_namelist_documentation():
     """
     Checks if all of the definitions in the structure are copied correctly.
 
@@ -29,7 +30,7 @@ def test_geogrid_namelist_documentation():
     :return:
     """
 
-    for _, section_config in geogrid_namelist.items():
+    for _, section_config in WPS_NAMELIST_DEFINITIONS.items():
         for option, config_tuple in section_config.items():
             first_word = config_tuple[0].split()[0]
 

@@ -5,14 +5,9 @@ Code to represent and manipulate the GEOGRID program.
 """
 
 import re
-from enum import Enum
 from typing import Callable
-import jsonschema
 import os
-from transitions import Machine
 
-from .namelist import generate_config_file
-from .wrf_exceptions import WrfException
 from .wrf_runner import system_config
 from .program import Program
 from .wps_state_machine import WpsStateMachine
@@ -21,7 +16,8 @@ from .configuration import WpsConfiguration
 
 def check_progress_update(line: str):
     """
-    Scans one line of the output of GEOGRID to check if the program started working on a new domain.
+    Scan one line of the output of GEOGRID to check if the program started working on a new domain.
+
     :param line: one line of GEOGRID stdout
     :return: tuple (current_domain, domain_count) if the status changed, None otherwise
     """
