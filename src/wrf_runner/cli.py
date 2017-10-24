@@ -11,7 +11,7 @@ import progressbar
 
 from .geogrid import Geogrid
 from .namelist import generate_config_file
-from .ungrib import Ungrib
+from . import ungrib
 
 from .configuration import WpsConfiguration
 
@@ -47,7 +47,8 @@ def generate():
 
 @generate.command()
 @click.argument('configuration_file')
-@click.option('--debug/--no-debug', default=False, help='Prints additional information in the case of an error.')
+@click.option('--debug/--no-debug', default=False,
+              help='Prints additional information in the case of an error.')
 def wps_namelist(configuration_file, debug):
     """Will generate the WPS namelist"""
 
@@ -100,7 +101,9 @@ def geogrid(configuration_file, progress, log):
             bar.max_value = out_of
             bar.update(current, force=True)
 
-    geogrid = Geogrid(config, progress_update_cb=update_progress_cb if progress else None, print_message_cb=print,
+    geogrid = Geogrid(config,
+                      progress_update_cb=update_progress_cb if progress else None,
+                      print_message_cb=print,
                       log_file=log)
 
     loop = asyncio.get_event_loop()
@@ -118,16 +121,16 @@ def geogrid(configuration_file, progress, log):
         sys.exit(1)
 
 
-@run.command()
+@run.command('ungrib')
 @click.argument('configuration_file')
-def ungrib(configuration_file):
+def cli_ungrib(configuration_file):
     with open(configuration_file, 'r') as f:
         config = json.load(f)
 
-    ungrib = Ungrib(config)
+    ungrib_program = ungrib.Ungrib(config)
 
     loop = asyncio.get_event_loop()
-    success = loop.run_until_complete(ungrib.run())
+    success = loop.run_until_complete(ungrib_program.run())
     loop.close()
 
     if success:
@@ -136,3 +139,19 @@ def ungrib(configuration_file):
     else:
         print('Failure.')
         sys.exit(1)
+
+
+@cli.command()
+@click.argument('path_pattern', nargs=-1, required=True)
+def link_grib(path_pattern):
+
+    print(path_pattern)
+
+    try:
+        ungrib.link_grib(path_pattern)
+    except Exception as e:
+        click.echo(click.style('ERROR', bg='red'))
+        click.echo(click.style(str(e), bg='red'))
+        sys.exit(1)
+
+    sys.exit(0)

@@ -5,6 +5,7 @@ import datetime
 import os
 from types import SimpleNamespace
 from typing import Callable
+import glob
 
 import dateparser
 import jsonschema
@@ -80,3 +81,49 @@ class Ungrib:
 
         # Evaluate the result
         return self.state_machine.state == 'done' and return_code == 0
+
+
+def grib_alphabetical_extensions():
+    """Generate file extensions AAA, AAB, AAC, ..."""
+
+    current = 'AAA'
+    yield current
+
+    while current != 'ZZZ':
+        numbers = [ord(c) for c in current]
+
+        numbers[2] += 1
+
+        if numbers[2] > ord('Z'):
+            numbers[2] = ord('A')
+            numbers[1] += 1
+            if numbers[1] > ord('Z'):
+                numbers[1] = ord('A')
+                numbers[0] += 1
+
+        current = ''.join(map(chr, numbers))
+
+        yield current
+
+
+def link_grib(path_pattern):
+    """Link the data files into the working directory.
+
+    Python implementation of the script linkgrib.classmethod
+    """
+
+    # Delete all links
+    current_links = glob.glob('GRIBFILE.???')
+
+    for link in current_links:
+        os.remove(link)
+
+    # Get the new files
+    if len(path_pattern) == 1:
+        new_files = glob.glob(path_pattern)
+    else:
+        new_files = path_pattern
+
+    # Link the new paths
+    for extension, new_file in zip(grib_alphabetical_extensions(), new_files):
+        os.symlink(new_file, 'GRIBFILE.' + extension)

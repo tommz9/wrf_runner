@@ -2,7 +2,7 @@ import pytest
 import os
 from wrf_runner import WrfException
 from wrf_runner import namelist
-from wrf_runner.ungrib import Ungrib
+from wrf_runner.ungrib import Ungrib, grib_alphabetical_extensions
 from unittest.mock import MagicMock
 
 from .test_geogrid import FakeProcess
@@ -47,3 +47,23 @@ class TestRunMethods:
 
         # The progress has been updated 25 times
         assert(progress_update_mock.call_count == 25)
+
+
+def test_grib_alphabetical_extensions():
+
+    generator = grib_alphabetical_extensions()
+
+    assert(next(generator) == 'AAA')
+    assert(next(generator) == 'AAB')
+    assert(next(generator) == 'AAC')
+
+
+def test_grib_alphabetical_extensions2():
+
+    generator = grib_alphabetical_extensions()
+
+    extensions = list(generator)
+
+    assert(len(extensions) == (ord('Z') - ord('A') + 1)**3)
+    assert(extensions[0] == 'AAA')
+    assert(extensions[-1] == 'ZZZ')
