@@ -4,6 +4,7 @@
 
 from os import getenv
 import asyncio
+import logging
 
 import jsonschema
 from sanic import Sanic
@@ -43,20 +44,30 @@ class WrfRunner:
             self.event_loop = event_loop
 
         self.app = Sanic(__name__)
-        self.app.add_route(self.test, '/')
+        self.app.add_route(self.html_handler, '/')
 
         self.current_step = None
 
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel('INFO')
+
     def add_step(self, step):
+        """Add a step to the pipeline.
+
+        step: an object with a run() coroutine
+        """
         self.steps.append(step)
+        self.logger.info('Step registered: ' + str(step))
+
+        return self
 
     async def run_steps(self):
         for step in self.steps:
-            print(step)
+            self.logger.info('Starting step `{}`'.format(str(step)))
             self.current_step = step
             await step.run()
 
-    async def test(self, request):
+    async def html_handler(self, request):
         header = '<html><body><h1>WRF Runner</h1>'
         footer = '</body></html>'
         if self.current_step is None:
@@ -70,8 +81,7 @@ class WrfRunner:
     def run(self):
 
         server = self.app.create_server(host="0.0.0.0", port=8000)
-        # asyncio.ensure_future(server)
-
         self.event_loop.create_task(server)
 
+        self.logger.info('Starting the event loop.')
         self.event_loop.run_until_complete(self.run_steps())
