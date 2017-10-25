@@ -2,6 +2,7 @@
 """Represents the configuration of WRF."""
 
 import datetime
+import json
 
 import jsonschema
 import dateparser
@@ -52,6 +53,12 @@ WPS_CONFIGURATION_SCHEMA = {
     "required": ["domains", "projection", "data_path", "start_date",
                  "end_date", "interval", "prefix"]
 }
+
+
+def configuration_dict_from_json(path):
+    with open(path, 'r') as f:
+        config = json.load(f)
+    return config
 
 
 class WpsConfiguration:
