@@ -17,7 +17,9 @@ requirements = [
     'click',
     'progressbar2',
     'dateparser',
-    'transitions'
+    'transitions',
+    'sanic',
+    'aiohttp'
     # TODO: put package requirements here
 ]
 
