@@ -46,6 +46,8 @@ class Metgrid:
             log_file=log_file
         )
 
+        self.output_files = []
+
     def __str__(self):
         if self.state_machine.current_domain == 0:
             return 'Metgrid (not running)'
@@ -75,8 +77,18 @@ class Metgrid:
 
             # Wait for the program to end
             return_code = await self.program.run()
+
+            self.logger.info(f'Files created: {self.program.new_files}')
+
         finally:
             os.chdir(cwd)
 
         # Evaluate the result
-        return self.state_machine.state == 'done' and return_code == 0
+        successful_run = self.state_machine.state == 'done' and return_code == 0
+
+        if successful_run:
+            self.output_files = [
+                f for f in self.program.new_files if f.endswith('.nc')]
+            self.logger.info(f'Output files: {self.output_files}')
+
+        return successful_run
