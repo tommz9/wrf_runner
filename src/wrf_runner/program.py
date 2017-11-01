@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import logging
 import asyncio
+import os
+import datetime as dt
+
 from contextlib import closing
 from types import SimpleNamespace
 
@@ -45,11 +48,13 @@ class Program:
         """
 
         self.executable = executable
-        self.log_file = log_file
+        self.log_file = os.path.abspath(log_file)
 
         self.stderr_callback = stderr_callback
         self.stdout_callback = stdout_callback
         self.logger = None
+
+        self.new_files = []
 
     def initialize_logger(self):
         """
@@ -79,6 +84,7 @@ class Program:
         """
         Listens on the stdout and stderr and runs the callbacks for each line.
         """
+        start_time = dt.datetime.now()
 
         with closing(self.initialize_logger()):
             # Run the program
@@ -92,7 +98,17 @@ class Program:
             await stream_reader(process.stderr, self.private_stderr_callback)
 
             # Wait for the program to end
-            return await process.wait()
+            retcode = await process.wait()
+
+        self.new_files = []
+
+        for file_to_check in os.listdir('.'):
+            st = os.stat(file_to_check)
+            mtime = dt.datetime.fromtimestamp(st.st_mtime)
+            if mtime >= start_time:
+                self.new_files.append(os.path.abspath(file_to_check))
+
+        return retcode
 
     def private_stderr_callback(self, line):
         """

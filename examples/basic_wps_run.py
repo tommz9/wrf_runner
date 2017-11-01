@@ -16,9 +16,9 @@ def main(config_file):
 
     configuration = WpsConfiguration(configuration_dict_from_json(config_file))
 
-    geogrid = Geogrid(configuration)
-    ungrib = Ungrib(configuration)
-    metgrid = Metgrid(configuration)
+    geogrid = Geogrid(configuration, log_file='log.txt')
+    ungrib = Ungrib(configuration, log_file='log.txt')
+    metgrid = Metgrid(configuration, log_file='log.txt')
 
     runner.add_step(geogrid) \
         .add_step(ungrib) \

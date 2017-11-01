@@ -8,6 +8,7 @@ import re
 from typing import Callable
 import os
 import logging
+import glob
 
 from .wrf_runner import system_config
 from .program import Program
@@ -73,26 +74,40 @@ class Geogrid():
             return 'Geogrid (not running)'
 
         return f'Geogrid(processing domain '\
-            '{self.state_machine.current_domain} '\
-            'out of {self.state_machine.max_domains}'
+            f'{self.state_machine.current_domain} '\
+            f'out of {self.state_machine.max_domains}'
 
     async def run(self):
         self.logger.info('Starting.')
 
+        cwd = os.getcwd()
         os.chdir(system_config['wps_path'])
 
-        self.logger.info('Processing the configuration file...')
+        old_files = glob.glob('./geo_em.*')
+        if old_files:
+            self.logger.info(f'Deleting old output files: {old_files}')
 
-        # Generate the config file and save it
-        config_file_content = self.config.get_namelist()
+            for old_file in old_files:
+                os.remove(old_file)
 
-        # Generate the namelist
-        with open('namelist.wps', 'w') as namelist_file:
-            namelist_file.write(config_file_content)
+        try:
+            self.logger.info('Processing the configuration file...')
 
-        self.state_machine.reset()
-        self.logger.info('Initializing...')
+            # Generate the config file and save it
+            config_file_content = self.config.get_namelist()
 
-        return_code = await self.program.run()
+            # Generate the namelist
+            with open('namelist.wps', 'w') as namelist_file:
+                namelist_file.write(config_file_content)
+
+            self.state_machine.reset()
+            self.logger.info('Initializing...')
+
+            return_code = await self.program.run()
+
+        finally:
+            os.chdir(cwd)
+
+        self.logger.info(f'Files created: {self.program.new_files}')
 
         return self.state_machine.state == 'done' and return_code == 0

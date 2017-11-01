@@ -57,21 +57,26 @@ class Metgrid:
         self.logger.info('Metgrid starting.')
 
         # cd to the WPS folder
+        cwd = os.getcwd()
         os.chdir(system_config['wps_path'])
 
-        self.logger.info('Processing the configuration file...')
+        try:
 
-        # Generate the config file and save it
-        config_file_content = self.config.get_namelist()
+            self.logger.info('Processing the configuration file...')
 
-        # Generate the namelist
-        with open('namelist.wps', 'w') as namelist_file:
-            namelist_file.write(config_file_content)
+            # Generate the config file and save it
+            config_file_content = self.config.get_namelist()
 
-        self.state_machine.reset()
+            # Generate the namelist
+            with open('namelist.wps', 'w') as namelist_file:
+                namelist_file.write(config_file_content)
 
-        # Wait for the program to end
-        return_code = await self.program.run()
+            self.state_machine.reset()
+
+            # Wait for the program to end
+            return_code = await self.program.run()
+        finally:
+            os.chdir(cwd)
 
         # Evaluate the result
         return self.state_machine.state == 'done' and return_code == 0
