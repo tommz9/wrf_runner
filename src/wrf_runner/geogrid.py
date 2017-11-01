@@ -7,6 +7,7 @@ Code to represent and manipulate the GEOGRID program.
 import re
 from typing import Callable
 import os
+import logging
 
 from .wrf_runner import system_config
 from .program import Program
@@ -33,7 +34,6 @@ class Geogrid():
     def __init__(self,
                  config,
                  progress_update_cb: Callable[[int, int], None] = None,
-                 print_message_cb: Callable[[str], None] = None,
                  log_file=None):
         """
 
@@ -48,13 +48,19 @@ class Geogrid():
         else:
             self.config = WpsConfiguration(config)
 
+        self.logger = logging.getLogger(__name__ + '.' + Geogrid.__name__)
+
+        def log_progress(current_domain, max_domains):
+            self.logger.info(
+                f'Processing domain {current_domain} out of {max_domains}.')
+
         domains_count = len(self.config['domains'])
         self.state_machine = WpsStateMachine(
             domains_count,
             check_progress_update,
             lambda line: 'Successful completion of geogrid.' in line,
             lambda line: 'ERROR' in line,
-            progress_update_cb)
+            log_progress)
 
         self.program = Program(
             './geogrid.exe',
@@ -62,17 +68,20 @@ class Geogrid():
             self.state_machine.process_line,
             log_file=log_file)
 
-        self.print_message_cb = print_message_cb
+    def __str__(self):
+        if self.state_machine.current_domain == 0:
+            return 'Geogrid (not running)'
 
-    def print_message(self, message):
-        if self.print_message_cb:
-            self.print_message_cb(message)
+        return f'Geogrid(processing domain '\
+            '{self.state_machine.current_domain} '\
+            'out of {self.state_machine.max_domains}'
 
     async def run(self):
+        self.logger.info('Starting.')
 
         os.chdir(system_config['wps_path'])
 
-        self.print_message('Processing the configuration file...')
+        self.logger.info('Processing the configuration file...')
 
         # Generate the config file and save it
         config_file_content = self.config.get_namelist()
@@ -82,7 +91,7 @@ class Geogrid():
             namelist_file.write(config_file_content)
 
         self.state_machine.reset()
-        self.print_message('Initializing...')
+        self.logger.info('Initializing...')
 
         return_code = await self.program.run()
 

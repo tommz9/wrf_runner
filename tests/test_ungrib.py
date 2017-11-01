@@ -36,17 +36,12 @@ class TestRunMethods:
     @pytest.mark.asyncio
     async def test_success_run(self, valid_process_simulator, valid_config_1):
 
-        progress_update_mock = MagicMock()
-
         ungrib = Ungrib(
-            config=valid_config_1, progress_update_cb=progress_update_mock)
+            config=valid_config_1)
         result = await ungrib.run()
 
         # Success
         assert(result)
-
-        # The progress has been updated 25 times
-        assert(progress_update_mock.call_count == 25)
 
 
 def test_grib_alphabetical_extensions():

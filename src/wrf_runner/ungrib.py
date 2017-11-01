@@ -1,17 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import asyncio
-import datetime
+import logging
 import os
-from types import SimpleNamespace
 from typing import Callable
 import glob
 
-import dateparser
-import jsonschema
-
-from .namelist import generate_config_file
-from .wrf_exceptions import WrfException
 from .wrf_runner import system_config
 from .program import Program
 from .wps_state_machine import WpsStateMachine
@@ -29,7 +22,6 @@ class Ungrib:
     def __init__(self,
                  config,
                  progress_update_cb: Callable[[int, int], None] = None,
-                 print_message_cb: Callable[[str], None] = None,
                  log_file=None):
         """"""
 
@@ -40,12 +32,17 @@ class Ungrib:
 
         files_count = 10  # TODO
 
+        self.logger = logging.getLogger(__name__ + '.' + Ungrib.__name__)
+
+        def log_progress(current_domain, max_domains):
+            self.logger.info(f'Processing next time ...')
+
         self.state_machine = WpsStateMachine(
             files_count,
             check_progress_update,
             lambda line: 'Successful completion of ungrib.' in line,
             lambda line: 'ERROR' in line,
-            progress_update_cb
+            log_progress
         )
 
         self.program = Program(
@@ -55,17 +52,16 @@ class Ungrib:
             log_file=log_file
         )
 
-        self.print_message_cb = print_message_cb
-
-    def print_message(self, message):
-        if self.print_message_cb:
-            self.print_message_cb(message)
+    def __str__(self):
+        return 'Ungrib ()'
 
     async def run(self):
+        self.logger.info('Ungrib starting.')
+
         # cd to the WPS folder
         os.chdir(system_config['wps_path'])
 
-        self.print_message('Processing the configuration file...')
+        self.logger.info('Processing the configuration file...')
 
         # Generate the config file and save it
         config_file_content = self.config.get_namelist()

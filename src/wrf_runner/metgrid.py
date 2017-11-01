@@ -2,9 +2,9 @@
 
 import os
 from typing import Callable
+import logging
 
 from .wrf_runner import system_config
-from .namelist import generate_config_file
 from .wps_state_machine import WpsStateMachine
 from . import geogrid
 from .program import Program
@@ -15,7 +15,6 @@ class Metgrid:
     def __init__(self,
                  config,
                  progress_update_cb: Callable[[int, int], None] = None,
-                 print_message_cb: Callable[[str], None] = None,
                  log_file=None):
 
         if isinstance(config, WpsConfiguration):
@@ -23,14 +22,21 @@ class Metgrid:
         else:
             self.config = WpsConfiguration(config)
 
-        domain_count = 3  # TODO
+        domain_count = len(config['domains'])
+
+        self.logger = logging.getLogger(
+            __name__ + '.' + Metgrid.__name__)
+
+        def log_progress(current_domain, max_domains):
+            self.logger.info(
+                f'Processing domain {current_domain} out of {max_domains}.')
 
         self.state_machine = WpsStateMachine(
             domain_count,
             geogrid.check_progress_update,
             lambda line: 'Successful completion of metgrid.' in line,
             lambda line: 'ERROR' in line,
-            progress_update_cb
+            log_progress
         )
 
         self.program = Program(
@@ -40,17 +46,20 @@ class Metgrid:
             log_file=log_file
         )
 
-        self.print_message_cb = print_message_cb
-
-    def print_message(self, message):
-        if self.print_message_cb:
-            self.print_message_cb(message)
+    def __str__(self):
+        if self.state_machine.current_domain == 0:
+            return 'Metgrid (not running)'
+        else:
+            return f'Metgrid (processing domain {self.state_machine.current_domain} '\
+                'out of {self.state_machine.max_domains})'
 
     async def run(self):
+        self.logger.info('Metgrid starting.')
+
         # cd to the WPS folder
         os.chdir(system_config['wps_path'])
 
-        self.print_message('Processing the configuration file...')
+        self.logger.info('Processing the configuration file...')
 
         # Generate the config file and save it
         config_file_content = self.config.get_namelist()

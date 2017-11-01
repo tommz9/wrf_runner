@@ -79,41 +79,16 @@ def run():
 @run.command('geogrid')
 @click.argument('configuration_file')
 @click.option('--log', default=None, help='Logfile for the output from geogrid')
-@click.option('--progress/--no-progress', default=True, help='Turns on/off the progress bar.')
 def cli_geogrid(configuration_file, progress, log):
     with open(configuration_file, 'r') as f:
         config = json.load(f)
 
-    if progress:
-        widgets = [
-            'Finished domains: ',
-            progressbar.SimpleProgress(),
-            progressbar.Bar(),
-            progressbar.Percentage()
-        ]
-
-        bar = progressbar.ProgressBar(max_value=2, widgets=widgets)
-        bar.initialized = False
-
-        def update_progress_cb(current, out_of):
-            if not bar.initialized:
-                bar.start()
-                bar.initialized = True
-
-            bar.max_value = out_of
-            bar.update(current, force=True)
-
     geogrid_program = geogrid.Geogrid(config,
-                                      progress_update_cb=update_progress_cb if progress else None,
-                                      print_message_cb=print,
                                       log_file=log)
 
     loop = asyncio.get_event_loop()
     success = loop.run_until_complete(geogrid_program.run())
     loop.close()
-
-    if progress:
-        bar.finish()
 
     if success:
         print('Success.')
@@ -130,11 +105,7 @@ def cli_ungrib(configuration_file, log):
     with open(configuration_file, 'r') as f:
         config = json.load(f)
 
-    def update_progress_cb(current, out_of):
-        click.echo(f"{current} / {out_of}")
-
     ungrib_program = ungrib.Ungrib(config,
-                                   progress_update_cb=update_progress_cb,
                                    log_file=log)
 
     loop = asyncio.get_event_loop()
@@ -156,11 +127,7 @@ def cli_metgrid(configuration_file, log):
     with open(configuration_file, 'r') as f:
         config = json.load(f)
 
-    def update_progress_cb(current, out_of):
-        click.echo(f"{current} / {out_of}")
-
     metgrid_program = metgrid.Metgrid(config,
-                                      progress_update_cb=update_progress_cb,
                                       log_file=log)
 
     loop = asyncio.get_event_loop()

@@ -57,15 +57,20 @@ class WrfRunner:
         step: an object with a run() coroutine
         """
         self.steps.append(step)
-        self.logger.info('Step registered: ' + str(step))
+        self.logger.info(f'Step registered: `{step}`')
 
         return self
 
     async def run_steps(self):
         for step in self.steps:
-            self.logger.info('Starting step `{}`'.format(str(step)))
+            self.logger.info(f'Starting step `{step}`.')
             self.current_step = step
-            await step.run()
+            return_code = await step.run()
+            if not return_code:
+                self.logger.error(f'Failed step `{step}`')
+                return False
+        self.logger.info('Finished all steps.')
+        return True
 
     async def html_handler(self, request):
         header = '<html><body><h1>WRF Runner</h1>'
@@ -75,7 +80,7 @@ class WrfRunner:
 
         return response.html(
             header +
-            '<p>Step `{}` is running.</p>'.format(str(self.current_step)) +
+            f'<p>Step `{self.current_step}` is running.</p>' +
             footer)
 
     def run(self):
@@ -84,4 +89,6 @@ class WrfRunner:
         self.event_loop.create_task(server)
 
         self.logger.info('Starting the event loop.')
-        self.event_loop.run_until_complete(self.run_steps())
+        retcode = self.event_loop.run_until_complete(self.run_steps())
+
+        return retcode
