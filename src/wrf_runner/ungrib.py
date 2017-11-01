@@ -79,6 +79,14 @@ class Ungrib:
             except KeyError:
                 pass
 
+            old_output_files = glob.glob(self.config['prefix'] + '*')
+
+            if old_output_files:
+                self.logger.info(
+                    f'Removing old output files: {old_output_files}')
+                for old_output_file in old_output_files:
+                    os.remove(old_output_file)
+
             self.logger.info(
                 f'Linking in the metdata using pattern `{pattern}`.')
             link_grib(pattern)
@@ -96,6 +104,9 @@ class Ungrib:
 
             # Wait for the program to end
             return_code = await self.program.run()
+
+            self.logger.info(f'Files created: {self.program.new_files}')
+
         finally:
             os.chdir(cwd)
 

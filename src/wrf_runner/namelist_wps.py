@@ -85,7 +85,7 @@ WPS_NAMELIST_DEFINITIONS = {
                 "intermediate files will be written in the directory specified. This option may "
                 "be useful to avoid renaming intermediate files if ungrib is to be run on multiple"
                 " sources of GRIB data. Default value is 'FILE'.",
-                lambda config: 'FILE'
+                lambda config: config['prefix']
             )
     },
     'metgrid': {
@@ -98,7 +98,7 @@ WPS_NAMELIST_DEFINITIONS = {
             'the data in the last encountered source will take priority over all'
             'preceding sources for that field. Default value is an empty list (i.e.,'
             'no meteorological fields).',
-            lambda config: 'FILE'
+            lambda config: config['prefix']
         ),
         'io_form_metgrid': (
             ' IO_FORM_METGRID : The WRF I/O API format that the output created by the '
