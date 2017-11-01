@@ -4,6 +4,7 @@ import logging
 import os
 from typing import Callable
 import glob
+import shutil
 
 from .wrf_runner import system_config
 from .program import Program
@@ -69,6 +70,14 @@ class Ungrib:
             except KeyError:
                 self.logger.error('`key_error` is missing in the config file.')
                 return False
+
+            try:
+                vtable_path = self.config['ungrib_vtable']
+                self.logger.info(
+                    f'Copying the Vtable from `{os.path.abspath(vtable_path)}`')
+                shutil.copyfile(vtable_path, './Vtable')
+            except KeyError:
+                pass
 
             self.logger.info(
                 f'Linking in the metdata using pattern `{pattern}`.')
