@@ -64,6 +64,16 @@ class Ungrib:
 
         try:
 
+            try:
+                pattern = self.config['metdata_pattern']
+            except KeyError:
+                self.logger.error('`key_error` is missing in the config file.')
+                return False
+
+            self.logger.info(
+                f'Linking in the metdata using pattern `{pattern}`.')
+            link_grib(pattern)
+
             self.logger.info('Processing the configuration file...')
 
             # Generate the config file and save it
@@ -79,7 +89,7 @@ class Ungrib:
             return_code = await self.program.run()
         finally:
             os.chdir(cwd)
-            
+
         # Evaluate the result
         return self.state_machine.state == 'done' and return_code == 0
 
@@ -120,7 +130,7 @@ def link_grib(path_pattern):
         os.remove(link)
 
     # Get the new files
-    if len(path_pattern) == 1:
+    if isinstance(path_pattern, str):
         new_files = glob.glob(path_pattern)
     else:
         new_files = path_pattern
