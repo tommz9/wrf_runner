@@ -12,14 +12,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'Jinja2',
-    'jsonschema',
-    'click',
-    'progressbar2',
-    'dateparser',
-    'transitions',
-    'sanic',
-    'aiohttp'
+    'click'
     # TODO: put package requirements here
 ]
 

@@ -1,8 +1,0 @@
-{
-    "ungrib": {
-        "start_date": "2017-09-10",
-        "end_date": "2017-09-11",
-        "interval": 3600,
-        "prefix": "FILE"
-    }
-}
