@@ -1,7 +1,9 @@
-import arrow
 import glob
+import os
 
 import click
+import arrow
+import re
 
 from ..exceptions import WrfRunnerException
 
@@ -44,16 +46,72 @@ class NAM:
             date_to_check = date_to_check.shift(hours=NAM.time_step)
 
 
+class NAM_forecast:
+    time_step = 1
+    dx = 12
+
+    def __init__(self, folder):
+        self.folder = folder
+
+        self.initializations = {}
+
+        self.scan_folder()
+
+    def scan_folder(self):
+        initialization_folders = os.listdir(self.folder)
+
+        self.initializations = {}
+
+        for folder in initialization_folders:
+            folder_content = sorted(os.listdir(self.folder + '/' + folder))
+
+            first_entry = folder_content[0]
+            last_entry = folder_content[-1]
+
+            start = NAM_forecast.filename_to_datetime(first_entry)
+            end = NAM_forecast.filename_to_datetime(last_entry)
+
+            initialization = {
+                'folder': self.folder + '/' + folder,
+                'start': start,
+                'end': end
+            }
+
+            self.initializations[start] = initialization
+
+    @staticmethod
+    def filename_to_datetime(filename):
+        # The format of the filename: "nam_218_20160117_0600_005.grb2"
+        # last three digits are the time shift
+
+        datetime = arrow.get(str(filename), 'YYYYMMDD_HHmm')
+
+        parser = r'nam_218_.*_.*_(\d\d\d)\.grb2'
+
+        result = re.match(parser, filename)
+
+        hours = int(result.group(1))
+
+        return datetime.shift(hours=hours)
+
+
 @click.command()
 @click.argument('path_to_dataset')
-def main(path_to_dataset):
-    nam = NAM(path_to_dataset)
+@click.option('--forecast/--no-forecast', default=False)
+def main(path_to_dataset, forecast):
+    if forecast:
+        nam = NAM_forecast(path_to_dataset)
+    else:
+        nam = NAM(path_to_dataset)
 
     print('Dataset opened')
-    print('Dataset folder:   {}'.format(nam.folder))
-    print('Dataset timestep: {}'.format(NAM.time_step))
-    print('Dataset start:    {}'.format(nam.dataset_start))
-    print('Dataset end:      {}'.format(nam.dataset_end))
+    print('Number of initializations: {}'.format(len(nam.initializations)))
+
+
+    # print('Dataset folder:   {}'.format(nam.folder))
+    # print('Dataset timestep: {}'.format(NAM.time_step))
+    # print('Dataset start:    {}'.format(nam.dataset_start))
+    # print('Dataset end:      {}'.format(nam.dataset_end))
 
 
 if __name__ == '__main__':
