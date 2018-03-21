@@ -12,8 +12,9 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 requirements = [
-    'click'
-    # TODO: put package requirements here
+    'click',
+    'f90nml',
+    'arrow',
 ]
 
 setup_requirements = [
@@ -24,7 +25,6 @@ setup_requirements = [
 test_requirements = [
     'pytest',
     'pytest-mock',
-    'pytest-asyncio'
     # TODO: put package test requirements here
 ]
 

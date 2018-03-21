@@ -1,0 +1,2 @@
+class WrfRunnerException(Exception):
+    pass
