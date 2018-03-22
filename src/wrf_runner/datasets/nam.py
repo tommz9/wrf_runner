@@ -31,7 +31,13 @@ class NAM:
     def scan_folder(self):
         self.data_files = glob.glob(self.folder + '/nam_218_*.grb2')
 
-        self.dates = {NAM.filename_to_datetime(file): file for file in self.data_files}
+        self.dates = {}
+        for file in self.data_files:
+            datetime = NAM.filename_to_datetime(file)
+            try:
+                self.dates[datetime].append(file)
+            except KeyError:
+                self.dates[datetime] = [file]
 
         self.dataset_start = min(self.dates.keys())
         self.dataset_end = max(self.dates.keys())
@@ -51,45 +57,33 @@ class NAM_forecast:
     dx = 12
 
     def __init__(self, folder):
-        self.folder = folder
+        self.folder = str(folder)
 
-        self.initializations = {}
+        self.data_files = None
+        self.dates = None
+        self.dataset_start = None
+        self.dataset_end = None
 
         self.scan_folder()
 
     def scan_folder(self):
-        initialization_folders = os.listdir(self.folder)
+        self.data_files = glob.glob(self.folder + '/nam_218_*.grb2')
 
-        self.initializations = {}
+        self.dates = {NAM_forecast.filename_to_datetime(file): file for file in self.data_files}
 
-        for folder in initialization_folders:
-            folder_content = sorted(os.listdir(self.folder + '/' + folder))
-
-            first_entry = folder_content[0]
-            last_entry = folder_content[-1]
-
-            start = NAM_forecast.filename_to_datetime(first_entry)
-            end = NAM_forecast.filename_to_datetime(last_entry)
-
-            initialization = {
-                'folder': self.folder + '/' + folder,
-                'start': start,
-                'end': end
-            }
-
-            self.initializations[start] = initialization
+        self.dataset_start = min(self.dates.keys())
+        self.dataset_end = max(self.dates.keys())
 
     @staticmethod
     def filename_to_datetime(filename):
         # The format of the filename: "nam_218_20160117_0600_005.grb2"
         # last three digits are the time shift
 
+        filename = os.path.basename(filename)
         datetime = arrow.get(str(filename), 'YYYYMMDD_HHmm')
 
         parser = r'nam_218_.*_.*_(\d\d\d)\.grb2'
-
         result = re.match(parser, filename)
-
         hours = int(result.group(1))
 
         return datetime.shift(hours=hours)
@@ -105,13 +99,11 @@ def main(path_to_dataset, forecast):
         nam = NAM(path_to_dataset)
 
     print('Dataset opened')
-    print('Number of initializations: {}'.format(len(nam.initializations)))
 
-
-    # print('Dataset folder:   {}'.format(nam.folder))
-    # print('Dataset timestep: {}'.format(NAM.time_step))
-    # print('Dataset start:    {}'.format(nam.dataset_start))
-    # print('Dataset end:      {}'.format(nam.dataset_end))
+    print('Dataset folder:   {}'.format(nam.folder))
+    print('Dataset timestep: {}'.format(NAM.time_step))
+    print('Dataset start:    {}'.format(nam.dataset_start))
+    print('Dataset end:      {}'.format(nam.dataset_end))
 
 
 if __name__ == '__main__':

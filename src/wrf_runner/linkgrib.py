@@ -5,13 +5,16 @@ import logging
 log = logging.getLogger('linkgrib')
 
 
-def grib_alphabetical_extensions():
+def grib_alphabetical_extensions(last_extension=None):
     """
     Generate file extensions AAA, AAB, AAC, ...
     """
 
-    current = 'AAA'
-    yield current
+    if not last_extension:
+        current = 'AAA'
+        yield current
+    else:
+        current = last_extension
 
     while current != 'ZZZ':
         numbers = [ord(c) for c in current]
@@ -30,21 +33,28 @@ def grib_alphabetical_extensions():
         yield current
 
 
-def link_grib(files, filter_function=None) -> None:
+def link_grib(files, filter_function=None, delete_links=True) -> None:
     """
     Link the data files into the working directory.
 
     Python implementation of the script linkgrib
 
+    :param delete_links: the function will delete all GRIBFILEs if delete_links is True
     :param files: a list of files to link or a pattern used for globing
     :param filter_function: this function can be used to filter the linked files
     """
 
-    # Delete all links
     current_links = glob.glob('WPS/GRIBFILE.???')
+    last_extension = None
 
-    for link in current_links:
-        os.remove(link)
+    # Delete all links
+    if delete_links:
+        for link in current_links:
+            os.remove(link)
+    else:
+        if current_links:
+            last_link = sorted(current_links)[-1]
+            last_extension = os.path.splitext(last_link)[-1][1:]
 
     # Get the new files
     if isinstance(files, str):
@@ -56,6 +66,6 @@ def link_grib(files, filter_function=None) -> None:
         new_files = filter(filter_function, new_files)
 
     # Link the new paths
-    for extension, new_file in zip(grib_alphabetical_extensions(), sorted(new_files)):
+    for extension, new_file in zip(grib_alphabetical_extensions(last_extension), sorted(new_files)):
         log.debug('Linking: %s', new_file)
         os.symlink(str(new_file), 'WPS/GRIBFILE.' + extension)
